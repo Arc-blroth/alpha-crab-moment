@@ -1,0 +1,15 @@
+[package]
+name = "roll-a-ball"
+authors = ["Arc-blroth <45273859+Arc-blroth@users.noreply.github.com>"]
+license = "MIT OR Apache-2.0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = { version = "0.8.1", default-features = false, features = ["bevy_asset", "bevy_scene", "bevy_winit", "render", "x11"] }
+bevy_rapier3d = "0.17.0"
+bevy_dolly = { version = "0.0.1", git = "https://github.com/BlackPhlox/bevy_dolly", rev = "6cf9ef87dea08f429c730668d37f59008333ef4b" }
+
+[features]
+default = ["bevy_dyn"]
+bevy_dyn = ["bevy/dynamic"]
