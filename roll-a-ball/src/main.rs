@@ -16,6 +16,8 @@ use bevy_dolly::prelude::*;
 use bevy_dolly::system::DollyComponent;
 use bevy_rapier3d::prelude::*;
 
+pub mod score;
+
 #[derive(Component)]
 struct Ball;
 
@@ -37,9 +39,11 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_startup_system(setup)
+        .add_startup_system(score::setup)
         .add_system(input)
         .add_system(update_camera)
         .add_system(respawn)
+        .add_system(score::update_score)
         .run();
 }
 
@@ -150,7 +154,7 @@ fn input(
 ) {
     let mut ball_force = ball.single_mut();
     let (mut fake_ball_force, fake_ball_transform) = fake_ball.single_mut();
-    let yaw = get_yaw(&fake_ball_transform);
+    let yaw = get_yaw(fake_ball_transform);
 
     ball_force.force = vec3(0.0, 0.0, 0.0);
     ball_force.torque = vec3(0.0, 0.0, 0.0);

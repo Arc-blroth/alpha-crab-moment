@@ -1,5 +1,6 @@
 [workspace]
 members = [
+    "bnnuy-clicker",
     "roll-a-ball",
 ]
 # https://github.com/rust-lang/cargo/issues/9996
