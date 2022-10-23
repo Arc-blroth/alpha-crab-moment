@@ -831,6 +831,7 @@ dependencies = [
  "bevy_include_assets",
  "bevy_rapier2d",
  "rand",
+ "wasm-bindgen",
 ]
 
 [[package]]
