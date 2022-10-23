@@ -5,12 +5,14 @@
 #[cfg(all(not(debug_assertions), feature = "bevy_dyn"))]
 compile_error!("Bevy should not be dynamically linked for release builds!");
 
+use bevy::asset::AssetPlugin;
 use bevy::math::{vec2, vec3};
 use bevy::prelude::shape::Quad;
 use bevy::prelude::*;
 use bevy::render::camera::{DepthCalculation, ScalingMode, WindowOrigin};
 use bevy::render::primitives::Aabb;
 use bevy::sprite::Mesh2dHandle;
+use bevy_include_assets::*;
 use bevy_rapier2d::prelude::*;
 
 #[derive(Component, Default)]
@@ -80,7 +82,14 @@ fn main() {
         })
         .insert_resource(ClearColor(Color::rgba_u8(46, 178, 255, 64)))
         .init_resource::<LastCursorPos>()
-        .add_plugins(DefaultPlugins)
+        .add_plugins_with(DefaultPlugins, |group| {
+            if cfg!(not(debug_assertions)) {
+                group.add_before::<AssetPlugin, _>(EmbeddedAssetsPlugin::new(include_assets!(
+                    "../../assets" / "bnnuy.png"
+                )));
+            }
+            group
+        })
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_startup_system(setup)
         .add_system(update_ceiling)

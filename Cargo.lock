@@ -368,6 +368,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_include_assets"
+version = "0.1.1"
+dependencies = [
+ "bevy",
+]
+
+[[package]]
 name = "bevy_input"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -821,6 +828,7 @@ name = "bnnuy-clicker"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "bevy_include_assets",
  "bevy_rapier2d",
  "rand",
 ]

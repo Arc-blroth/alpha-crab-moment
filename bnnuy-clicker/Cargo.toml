@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 bevy = { version = "0.8.1", default-features = false, features = ["bevy_asset", "bevy_scene", "bevy_winit", "png", "render", "x11"] }
 bevy_rapier2d = "0.17.0"
+bevy_include_assets = { path = "../bevy_include_assets" }
 rand = "0.8.5"
 
 [features]
